@@ -11,4 +11,12 @@ class CalendrierTest {
         Calendrier calendrier = new Calendrier();
         assertTrue(calendrier.evenements().isEmpty());
     }
+
+    @Test
+    void ajouterEvenement() {
+        Calendrier calendrier = new Calendrier();
+        Evenement e = new Reunion(fr.mycalendar.domain.vo.EventId.nouveau(), null, null, null, null, null, null, null);
+        calendrier.ajouter(e);
+        assertEquals(1, calendrier.evenements().size());
+    }
 }
