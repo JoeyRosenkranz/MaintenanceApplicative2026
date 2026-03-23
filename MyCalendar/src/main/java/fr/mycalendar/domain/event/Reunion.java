@@ -27,4 +27,10 @@ public final class Reunion implements Evenement {
     public EventId id() {
         return id;
     }
+
+    public boolean estDansPeriode(Periode periode) {
+        java.time.LocalDateTime debut = java.time.LocalDateTime.of(date.valeur(), heureDebut.valeur());
+        java.time.LocalDateTime fin = debut.plus(duree.valeur());
+        return !fin.isBefore(periode.getDebut()) && !debut.isAfter(periode.getFin());
+    }
 }
