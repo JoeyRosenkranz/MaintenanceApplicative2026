@@ -35,4 +35,17 @@ class RendezVousPersonnelTest {
         Periode p = new Periode(LocalDateTime.of(2023, 1, 1, 9, 0), LocalDateTime.of(2023, 1, 1, 11, 0));
         assertTrue(((RendezVousPersonnel) rdv).estDansPeriode(p));
     }
+
+    @Test
+    void description() {
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        assertEquals("Gym", rdv.description());
+    }
 }

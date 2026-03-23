@@ -36,4 +36,9 @@ public final class RendezVousPersonnel implements Evenement {
         java.time.LocalDateTime fin = debut.plus(duree.valeur());
         return new Periode(debut, fin);
     }
+
+    @Override
+    public String description() {
+        return description.valeur();
+    }
 }

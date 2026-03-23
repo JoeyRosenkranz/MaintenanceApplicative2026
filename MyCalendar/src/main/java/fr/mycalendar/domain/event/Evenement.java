@@ -7,4 +7,5 @@ public interface Evenement {
     EventId id();
     boolean estDansPeriode(Periode periode);
     Periode periode();
+    String description();
 }
