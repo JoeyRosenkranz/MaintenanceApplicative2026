@@ -15,4 +15,8 @@ public final class Calendrier {
     public List<Evenement> evenements() {
         return Collections.unmodifiableList(evenements);
     }
+
+    public void ajouter(Evenement evenement) {
+        this.evenements.add(evenement);
+    }
 }
