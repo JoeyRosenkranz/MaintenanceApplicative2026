@@ -8,4 +8,11 @@ class EventIdTest {
     void instancieEventId() {
         assertNotNull(EventId.nouveau());
     }
+
+    @Test
+    void recreerDepuisChaine() {
+        String uuid = java.util.UUID.randomUUID().toString();
+        EventId id = EventId.depuis(uuid);
+        assertEquals(uuid, id.valeur());
+    }
 }
