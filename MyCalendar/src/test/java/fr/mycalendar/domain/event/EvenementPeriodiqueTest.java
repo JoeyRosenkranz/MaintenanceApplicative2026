@@ -41,4 +41,18 @@ class EvenementPeriodiqueTest {
         );
         assertTrue(ep.estDansPeriode(p));
     }
+
+    @Test
+    void description() {
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        EvenementPeriodique ep = new EvenementPeriodique(rdv, FrequenceRepetition.QUOTIDIENNE);
+        assertEquals("Gym (QUOTIDIENNE)", ep.description());
+    }
 }

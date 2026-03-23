@@ -26,4 +26,9 @@ public final class EvenementPeriodique implements Evenement {
     public fr.mycalendar.domain.vo.Periode periode() {
         return evenementDeBase.periode();
     }
+
+    @Override
+    public String description() {
+        return evenementDeBase.description() + " (" + frequence.name() + ")";
+    }
 }
