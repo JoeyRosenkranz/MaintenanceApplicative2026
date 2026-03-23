@@ -73,4 +73,56 @@ class CalendrierSerializerTest {
         assertTrue(rdvImporte instanceof RendezVousPersonnel);
         assertTrue(rdvImporte.description().equals("Gym"));
     }
+
+    @Test
+    void deserialiserReunion() throws Exception {
+        Calendrier calendrier = new Calendrier();
+        Evenement reunion = new fr.mycalendar.domain.event.Reunion(
+                EventId.nouveau(),
+                new TitreEvenement("Point hebdo"),
+                new DateEvenement(LocalDate.of(2023, 1, 2)),
+                new HeureDebut(LocalTime.of(10, 0)),
+                new DureeEvenement(Duration.ofMinutes(30)),
+                new DescriptionEvenement("Reunion de sync"),
+                new Lieu("Salle A"),
+                new Participants(java.util.List.of(new Participant("Alice"), new Participant("Bob")))
+        );
+        calendrier.ajouter(reunion);
+
+        CalendrierSerializer serializer = new CalendrierSerializer();
+        String json = serializer.exporter(calendrier);
+        System.out.println("JSON Reunion: " + json);
+        
+        Calendrier importe = serializer.importer(json);
+        assertTrue(importe.evenements().size() == 1);
+        Evenement importeReunion = importe.evenements().get(0);
+        assertTrue(importeReunion instanceof fr.mycalendar.domain.event.Reunion);
+        assertTrue(importeReunion.description().equals("Reunion de sync"));
+    }
+
+    @Test
+    void deserialiserEvenementPeriodique() throws Exception {
+        Evenement base = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        Evenement periodique = new fr.mycalendar.domain.event.EvenementPeriodique(base, fr.mycalendar.domain.vo.FrequenceRepetition.HEBDOMADAIRE);
+        
+        Calendrier calendrier = new Calendrier();
+        calendrier.ajouter(periodique);
+
+        CalendrierSerializer serializer = new CalendrierSerializer();
+        String json = serializer.exporter(calendrier);
+        System.out.println("JSON Periodique: " + json);
+
+        Calendrier importe = serializer.importer(json);
+        assertTrue(importe.evenements().size() == 1);
+        Evenement importePeriodique = importe.evenements().get(0);
+        assertTrue(importePeriodique instanceof fr.mycalendar.domain.event.EvenementPeriodique);
+        assertTrue(importePeriodique.description().contains("HEBDOMADAIRE"));
+    }
 }
