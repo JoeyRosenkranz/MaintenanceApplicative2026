@@ -6,4 +6,5 @@ import fr.mycalendar.domain.vo.Periode;
 public interface Evenement {
     EventId id();
     boolean estDansPeriode(Periode periode);
+    Periode periode();
 }
