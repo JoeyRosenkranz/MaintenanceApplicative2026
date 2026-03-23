@@ -33,4 +33,11 @@ public final class Reunion implements Evenement {
         java.time.LocalDateTime fin = debut.plus(duree.valeur());
         return !fin.isBefore(periode.getDebut()) && !debut.isAfter(periode.getFin());
     }
+
+    @Override
+    public Periode periode() {
+        java.time.LocalDateTime debut = java.time.LocalDateTime.of(date.valeur(), heureDebut.valeur());
+        java.time.LocalDateTime fin = debut.plus(duree.valeur());
+        return new Periode(debut, fin);
+    }
 }
