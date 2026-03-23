@@ -30,4 +30,24 @@ class CalendrierSerializerTest {
         assertTrue(json.contains("2023-01-01"));
         assertTrue(json.contains("18:00"));
     }
+
+    @Test
+    void serialiserCalendrier() throws Exception {
+        Calendrier calendrier = new Calendrier();
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        calendrier.ajouter(rdv);
+
+        CalendrierSerializer serializer = new CalendrierSerializer();
+        String json = serializer.exporter(calendrier);
+        System.out.println("Calendrier JSON : " + json);
+        
+        assertTrue(json.contains("Sport"));
+    }
 }
