@@ -19,4 +19,10 @@ public final class Calendrier {
     public void ajouter(Evenement evenement) {
         this.evenements.add(evenement);
     }
+
+    public List<Evenement> evenementsPour(fr.mycalendar.domain.vo.Periode periode) {
+        return evenements.stream()
+                .filter(e -> e.estDansPeriode(periode))
+                .toList();
+    }
 }
