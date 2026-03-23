@@ -18,4 +18,8 @@ public final class Periode {
     public LocalDateTime getFin() {
         return fin;
     }
+
+    public boolean chevauche(Periode autre) {
+        return !this.fin.isBefore(autre.getDebut()) && !this.debut.isAfter(autre.getFin());
+    }
 }
