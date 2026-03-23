@@ -1,0 +1,33 @@
+package fr.mycalendar.domain.calendar;
+
+import fr.mycalendar.domain.event.Evenement;
+import fr.mycalendar.domain.event.RendezVousPersonnel;
+import fr.mycalendar.domain.vo.*;
+import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class CalendrierSerializerTest {
+    @Test
+    void serialiserRendezVousPersonnel() throws Exception {
+        CalendrierSerializer serializer = new CalendrierSerializer();
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        String json = serializer.exporter(rdv);
+        System.out.println("JSON généré : " + json);
+        
+        assertTrue(json.contains("Sport"));
+        assertTrue(json.contains("2023-01-01"));
+        assertTrue(json.contains("18:00"));
+    }
+}
