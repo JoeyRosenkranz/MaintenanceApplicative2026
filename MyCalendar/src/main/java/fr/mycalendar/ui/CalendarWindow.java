@@ -48,14 +48,67 @@ public class CalendarWindow extends JFrame {
         // Pannneau de boutons
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton btnAdd = new JButton("Ajouter un rendez-vous");
+        JButton btnDelete = new JButton("Supprimer");
+        JButton btnExport = new JButton("Exporter JSON");
+        JButton btnImport = new JButton("Importer JSON");
         JButton btnRefresh = new JButton("Rafraîchir");
         
         btnRefresh.addActionListener(e -> refreshList());
         btnAdd.addActionListener(e -> showAddEventDialog());
+        btnDelete.addActionListener(e -> deleteSelectedEvent());
+        btnExport.addActionListener(e -> exportToJson());
+        btnImport.addActionListener(e -> importFromJson());
         
         buttonPanel.add(btnRefresh);
+        buttonPanel.add(btnImport);
+        buttonPanel.add(btnExport);
+        buttonPanel.add(btnDelete);
         buttonPanel.add(btnAdd);
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void deleteSelectedEvent() {
+        Evenement selected = eventList.getSelectedValue();
+        if (selected != null) {
+            calendrier.supprimer(selected.id());
+            refreshList();
+        }
+    }
+
+    private void exportToJson() {
+        try {
+            fr.mycalendar.domain.calendar.CalendrierSerializer serializer = new fr.mycalendar.domain.calendar.CalendrierSerializer();
+            String json = serializer.exporter(calendrier);
+            
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                java.nio.file.Files.writeString(fileChooser.getSelectedFile().toPath(), json);
+                JOptionPane.showMessageDialog(this, "Calendrier exporté !");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erreur export : " + e.getMessage());
+        }
+    }
+
+    private void importFromJson() {
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                String json = java.nio.file.Files.readString(fileChooser.getSelectedFile().toPath());
+                fr.mycalendar.domain.calendar.CalendrierSerializer serializer = new fr.mycalendar.domain.calendar.CalendrierSerializer();
+                Calendrier importe = serializer.importer(json);
+                
+                // Pour simplifier, on remplace tout ou on ajoute ?
+                // On va tout ajouter pour l'instant (ou proposer de remplacer)
+                for (Evenement e : importe.evenements()) {
+                    calendrier.ajouter(e);
+                }
+                refreshList();
+                JOptionPane.showMessageDialog(this, "Calendrier importé !");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erreur import : " + e.getMessage());
+        }
     }
 
     private void showAddEventDialog() {
