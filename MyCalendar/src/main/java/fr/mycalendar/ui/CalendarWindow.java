@@ -51,10 +51,41 @@ public class CalendarWindow extends JFrame {
         JButton btnRefresh = new JButton("Rafraîchir");
         
         btnRefresh.addActionListener(e -> refreshList());
+        btnAdd.addActionListener(e -> showAddEventDialog());
         
         buttonPanel.add(btnRefresh);
         buttonPanel.add(btnAdd);
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void showAddEventDialog() {
+        JTextField titreField = new JTextField();
+        JTextField heureField = new JTextField("10:00");
+        JTextField descField = new JTextField();
+        
+        Object[] message = {
+            "Titre:", titreField,
+            "Heure début (HH:mm):", heureField,
+            "Description:", descField
+        };
+
+        int option = JOptionPane.showConfirmDialog(this, message, "Nouveau Rendez-vous", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            try {
+                fr.mycalendar.domain.event.Evenement rdv = new fr.mycalendar.domain.event.RendezVousPersonnel(
+                    fr.mycalendar.domain.vo.EventId.nouveau(),
+                    new fr.mycalendar.domain.vo.TitreEvenement(titreField.getText()),
+                    new fr.mycalendar.domain.vo.DateEvenement(java.time.LocalDate.now()),
+                    new fr.mycalendar.domain.vo.HeureDebut(java.time.LocalTime.parse(heureField.getText())),
+                    new fr.mycalendar.domain.vo.DureeEvenement(java.time.Duration.ofMinutes(60)),
+                    new fr.mycalendar.domain.vo.DescriptionEvenement(descField.getText())
+                );
+                calendrier.ajouter(rdv);
+                refreshList();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erreur de saisie : " + e.getMessage());
+            }
+        }
     }
 
     private void refreshList() {
