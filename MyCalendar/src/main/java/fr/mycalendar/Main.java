@@ -8,6 +8,7 @@ import fr.mycalendar.domain.vo.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.swing.SwingUtilities;
 import java.util.Scanner;
 
 public class Main {
@@ -22,7 +23,8 @@ public class Main {
             System.out.println("\nOptions :");
             System.out.println("1 - Ajouter un rendez-vous personnel aujourd'hui");
             System.out.println("2 - Afficher les événements");
-            System.out.println("3 - Quitter");
+            System.out.println("3 - Lancer l'interface graphique (LANCE)");
+            System.out.println("4 - Quitter");
             System.out.print("Choix : ");
             
             String choix = scanner.nextLine();
@@ -79,6 +81,14 @@ public class Main {
                     break;
 
                 case "3":
+                    System.out.println("Lancement de l'interface graphique...");
+                    SwingUtilities.invokeLater(() -> {
+                        fr.mycalendar.ui.CalendarWindow window = new fr.mycalendar.ui.CalendarWindow(calendrier);
+                        window.setVisible(true);
+                    });
+                    break;
+
+                case "4":
                     quitter = true;
                     System.out.println("Au revoir !");
                     break;
