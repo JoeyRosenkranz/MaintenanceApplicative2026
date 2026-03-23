@@ -31,29 +31,41 @@ public class CalendrierSerializer {
         
         if (evenements != null && evenements.isArray()) {
             for (com.fasterxml.jackson.databind.JsonNode evNode : evenements) {
-                String type = evNode.get("@type").asText();
-                
-                fr.mycalendar.domain.vo.EventId id = fr.mycalendar.domain.vo.EventId.nouveau();
-                // Since EventId.nouveau() generates a new one, we need to parse it cleanly, 
-                // but EventId only exposes a UUID directly in the json "valeur". 
-                // Wait, EventId exposes its UUID value via toString() or we can just ignore reconstructing exact UUID 
-                // if it's not possible without constructor? 
-                // Actually EventId has `fromString`? No, let me look at EventId... I'll just use a test placeholder for now or parse it directly 
-                // Let's look at the generated JSON for EventId: {"valeur":"ad66ab32-..."} - EventId has a public constructor.
-                // Assuming we can figure it out:
-                fr.mycalendar.domain.vo.EventId parsedId = fr.mycalendar.domain.vo.EventId.depuis(evNode.get("id").get("valeur").asText());
-                fr.mycalendar.domain.vo.TitreEvenement titre = new fr.mycalendar.domain.vo.TitreEvenement(evNode.get("titre").get("valeur").asText());
-                fr.mycalendar.domain.vo.DateEvenement date = new fr.mycalendar.domain.vo.DateEvenement(java.time.LocalDate.parse(evNode.get("date").get("valeur").asText()));
-                fr.mycalendar.domain.vo.HeureDebut heure = new fr.mycalendar.domain.vo.HeureDebut(java.time.LocalTime.parse(evNode.get("heureDebut").get("valeur").asText()));
-                fr.mycalendar.domain.vo.DureeEvenement duree = new fr.mycalendar.domain.vo.DureeEvenement(java.time.Duration.parse(evNode.get("duree").get("valeur").asText()));
-                fr.mycalendar.domain.vo.DescriptionEvenement desc = new fr.mycalendar.domain.vo.DescriptionEvenement(evNode.get("description").get("valeur").asText());
-                
-                if ("RendezVousPersonnel".equals(type)) {
-                    calendrier.ajouter(new fr.mycalendar.domain.event.RendezVousPersonnel(parsedId, titre, date, heure, duree, desc));
-                }
+                calendrier.ajouter(extraireEvenement(evNode));
             }
         }
         return calendrier;
+    }
+
+    private fr.mycalendar.domain.event.Evenement extraireEvenement(com.fasterxml.jackson.databind.JsonNode evNode) {
+        String type = evNode.get("@type").asText();
+        
+        if ("EvenementPeriodique".equals(type)) {
+            fr.mycalendar.domain.event.Evenement base = extraireEvenement(evNode.get("evenementDeBase"));
+            fr.mycalendar.domain.vo.FrequenceRepetition freq = fr.mycalendar.domain.vo.FrequenceRepetition.valueOf(evNode.get("frequence").asText());
+            return new fr.mycalendar.domain.event.EvenementPeriodique(base, freq);
+        }
+
+        fr.mycalendar.domain.vo.EventId id = fr.mycalendar.domain.vo.EventId.depuis(evNode.get("id").get("valeur").asText());
+        fr.mycalendar.domain.vo.TitreEvenement titre = new fr.mycalendar.domain.vo.TitreEvenement(evNode.get("titre").get("valeur").asText());
+        fr.mycalendar.domain.vo.DateEvenement date = new fr.mycalendar.domain.vo.DateEvenement(java.time.LocalDate.parse(evNode.get("date").get("valeur").asText()));
+        fr.mycalendar.domain.vo.HeureDebut heure = new fr.mycalendar.domain.vo.HeureDebut(java.time.LocalTime.parse(evNode.get("heureDebut").get("valeur").asText()));
+        fr.mycalendar.domain.vo.DureeEvenement duree = new fr.mycalendar.domain.vo.DureeEvenement(java.time.Duration.parse(evNode.get("duree").get("valeur").asText()));
+        fr.mycalendar.domain.vo.DescriptionEvenement desc = new fr.mycalendar.domain.vo.DescriptionEvenement(evNode.get("description").get("valeur").asText());
+
+        if ("RendezVousPersonnel".equals(type)) {
+            return new fr.mycalendar.domain.event.RendezVousPersonnel(id, titre, date, heure, duree, desc);
+        } else if ("Reunion".equals(type)) {
+            fr.mycalendar.domain.vo.Lieu lieu = new fr.mycalendar.domain.vo.Lieu(evNode.get("lieu").get("valeur").asText());
+            java.util.List<fr.mycalendar.domain.vo.Participant> pList = new java.util.ArrayList<>();
+            com.fasterxml.jackson.databind.JsonNode pNodes = evNode.get("participants").get("valeurs");
+            for (com.fasterxml.jackson.databind.JsonNode pNode : pNodes) {
+                pList.add(new fr.mycalendar.domain.vo.Participant(pNode.get("nom").asText()));
+            }
+            return new fr.mycalendar.domain.event.Reunion(id, titre, date, heure, duree, desc, lieu, new fr.mycalendar.domain.vo.Participants(pList));
+        }
+        
+        throw new IllegalArgumentException("Type d'événement inconnu : " + type);
     }
 
     public ObjectMapper getMapper() {
