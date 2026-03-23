@@ -13,6 +13,10 @@ public final class EventId {
         return new EventId(UUID.randomUUID().toString());
     }
 
+    public static EventId depuis(String valeur) {
+        return new EventId(valeur);
+    }
+
     public String valeur() {
         return valeur;
     }
