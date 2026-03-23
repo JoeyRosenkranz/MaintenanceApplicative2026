@@ -50,4 +50,27 @@ class CalendrierSerializerTest {
         
         assertTrue(json.contains("Sport"));
     }
+
+    @Test
+    void deserialiserCalendrier() throws Exception {
+        Calendrier calendrier = new Calendrier();
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        calendrier.ajouter(rdv);
+
+        CalendrierSerializer serializer = new CalendrierSerializer();
+        String json = serializer.exporter(calendrier);
+        
+        Calendrier importe = serializer.importer(json);
+        assertTrue(importe.evenements().size() == 1);
+        Evenement rdvImporte = importe.evenements().get(0);
+        assertTrue(rdvImporte instanceof RendezVousPersonnel);
+        assertTrue(rdvImporte.description().equals("Gym"));
+    }
 }
