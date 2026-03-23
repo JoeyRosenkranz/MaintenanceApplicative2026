@@ -16,4 +16,9 @@ public final class EvenementPeriodique implements Evenement {
     public EventId id() {
         return evenementDeBase.id();
     }
+
+    @Override
+    public boolean estDansPeriode(fr.mycalendar.domain.vo.Periode periode) {
+        return evenementDeBase.estDansPeriode(periode);
+    }
 }

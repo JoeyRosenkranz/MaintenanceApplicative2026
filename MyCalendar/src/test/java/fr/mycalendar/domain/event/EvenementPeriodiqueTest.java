@@ -23,4 +23,22 @@ class EvenementPeriodiqueTest {
         assertNotNull(periodique);
         assertEquals(base.id(), periodique.id());
     }
+
+    @Test
+    void estDansPeriode() {
+        Evenement rdv = new RendezVousPersonnel(
+                EventId.nouveau(),
+                new TitreEvenement("Sport"),
+                new DateEvenement(LocalDate.of(2023, 1, 1)),
+                new HeureDebut(LocalTime.of(18, 0)),
+                new DureeEvenement(Duration.ofMinutes(60)),
+                new DescriptionEvenement("Gym")
+        );
+        EvenementPeriodique ep = new EvenementPeriodique(rdv, FrequenceRepetition.QUOTIDIENNE);
+        fr.mycalendar.domain.vo.Periode p = new fr.mycalendar.domain.vo.Periode(
+                LocalDateTime.of(2023, 1, 1, 17, 0),
+                LocalDateTime.of(2023, 1, 1, 19, 0)
+        );
+        assertTrue(ep.estDansPeriode(p));
+    }
 }
