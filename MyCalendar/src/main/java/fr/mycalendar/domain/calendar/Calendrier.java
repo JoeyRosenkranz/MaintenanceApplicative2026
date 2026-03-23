@@ -29,4 +29,8 @@ public final class Calendrier {
     public boolean detecterConflits(Evenement e1, Evenement e2) {
         return e1.periode().chevauche(e2.periode());
     }
+
+    public void supprimer(fr.mycalendar.domain.vo.EventId id) {
+        evenements.removeIf(e -> e.id().equals(id));
+    }
 }
