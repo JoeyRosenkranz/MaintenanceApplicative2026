@@ -25,4 +25,8 @@ public final class Calendrier {
                 .filter(e -> e.estDansPeriode(periode))
                 .toList();
     }
+
+    public boolean detecterConflits(Evenement e1, Evenement e2) {
+        return e1.periode().chevauche(e2.periode());
+    }
 }
