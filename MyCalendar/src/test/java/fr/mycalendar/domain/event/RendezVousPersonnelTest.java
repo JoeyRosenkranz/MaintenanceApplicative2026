@@ -46,6 +46,6 @@ class RendezVousPersonnelTest {
                 new DureeEvenement(Duration.ofMinutes(60)),
                 new DescriptionEvenement("Gym")
         );
-        assertEquals("Gym", rdv.description());
+        assertEquals("Gym", rdv.description().valeur());
     }
 }

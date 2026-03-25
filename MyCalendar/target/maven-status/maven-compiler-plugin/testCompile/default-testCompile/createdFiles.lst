@@ -1,4 +1,5 @@
 fr/mycalendar/domain/vo/ParticipantsTest.class
+fr/mycalendar/domain/event/RappelTest.class
 fr/mycalendar/domain/event/RendezVousPersonnelTest.class
 fr/mycalendar/domain/vo/LieuTest.class
 fr/mycalendar/domain/vo/ParticipantTest.class

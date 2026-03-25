@@ -1,8 +1,10 @@
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/Main.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/calendar/Calendrier.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/calendar/CalendrierSerializer.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/calendar/EvenementEnConflitException.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/event/Evenement.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/event/EvenementPeriodique.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/event/Rappel.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/event/RendezVousPersonnel.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/event/Reunion.java
 /Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/main/java/fr/mycalendar/domain/vo/DateEvenement.java

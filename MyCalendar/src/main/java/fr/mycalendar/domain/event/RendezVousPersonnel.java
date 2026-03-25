@@ -24,11 +24,7 @@ public final class RendezVousPersonnel implements Evenement {
         return id;
     }
 
-    public boolean estDansPeriode(Periode periode) {
-        java.time.LocalDateTime debut = java.time.LocalDateTime.of(date.valeur(), heureDebut.valeur());
-        java.time.LocalDateTime fin = debut.plus(duree.valeur());
-        return !fin.isBefore(periode.getDebut()) && !debut.isAfter(periode.getFin());
-    }
+
 
     @Override
     public Periode periode() {
@@ -38,7 +34,7 @@ public final class RendezVousPersonnel implements Evenement {
     }
 
     @Override
-    public String description() {
-        return description.valeur();
+    public DescriptionEvenement description() {
+        return description;
     }
 }

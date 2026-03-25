@@ -5,7 +5,9 @@ import fr.mycalendar.domain.vo.Periode;
 
 public interface Evenement {
     EventId id();
-    boolean estDansPeriode(Periode periode);
+    default boolean estDansPeriode(Periode periode) {
+        return this.periode().chevauche(periode);
+    }
     Periode periode();
-    String description();
+    fr.mycalendar.domain.vo.DescriptionEvenement description();
 }

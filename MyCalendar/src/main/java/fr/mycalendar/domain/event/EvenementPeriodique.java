@@ -28,7 +28,7 @@ public final class EvenementPeriodique implements Evenement {
     }
 
     @Override
-    public String description() {
-        return evenementDeBase.description() + " (" + frequence.name() + ")";
+    public fr.mycalendar.domain.vo.DescriptionEvenement description() {
+        return new fr.mycalendar.domain.vo.DescriptionEvenement(evenementDeBase.description().valeur() + " (" + frequence.name() + ")");
     }
 }

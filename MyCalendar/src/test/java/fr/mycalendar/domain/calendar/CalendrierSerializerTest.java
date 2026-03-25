@@ -9,8 +9,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class CalendrierSerializerTest {
     @Test
     void serialiserRendezVousPersonnel() throws Exception {
@@ -71,7 +71,7 @@ class CalendrierSerializerTest {
         assertTrue(importe.evenements().size() == 1);
         Evenement rdvImporte = importe.evenements().get(0);
         assertTrue(rdvImporte instanceof RendezVousPersonnel);
-        assertTrue(rdvImporte.description().equals("Gym"));
+        assertEquals("Gym", rdvImporte.description().valeur());
     }
 
     @Test
@@ -97,7 +97,7 @@ class CalendrierSerializerTest {
         assertTrue(importe.evenements().size() == 1);
         Evenement importeReunion = importe.evenements().get(0);
         assertTrue(importeReunion instanceof fr.mycalendar.domain.event.Reunion);
-        assertTrue(importeReunion.description().equals("Reunion de sync"));
+        assertEquals("Reunion de sync", importeReunion.description().valeur());
     }
 
     @Test
@@ -123,6 +123,6 @@ class CalendrierSerializerTest {
         assertTrue(importe.evenements().size() == 1);
         Evenement importePeriodique = importe.evenements().get(0);
         assertTrue(importePeriodique instanceof fr.mycalendar.domain.event.EvenementPeriodique);
-        assertTrue(importePeriodique.description().contains("HEBDOMADAIRE"));
+        assertTrue(importePeriodique.description().valeur().contains("HEBDOMADAIRE"));
     }
 }

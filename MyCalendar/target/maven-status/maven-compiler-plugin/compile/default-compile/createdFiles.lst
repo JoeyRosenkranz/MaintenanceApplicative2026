@@ -6,12 +6,14 @@ fr/mycalendar/domain/calendar/CalendrierSerializer$EvenementMixIn.class
 fr/mycalendar/domain/vo/EventId.class
 fr/mycalendar/domain/calendar/CalendrierSerializer.class
 fr/mycalendar/domain/vo/Periode.class
+fr/mycalendar/domain/calendar/EvenementEnConflitException.class
 fr/mycalendar/domain/vo/Participant.class
 fr/mycalendar/domain/event/Reunion.class
 fr/mycalendar/domain/event/Evenement.class
 fr/mycalendar/domain/vo/TitreEvenement.class
 fr/mycalendar/domain/event/RendezVousPersonnel.class
 fr/mycalendar/domain/vo/DateEvenement.class
+fr/mycalendar/domain/event/Rappel.class
 fr/mycalendar/ui/CalendarWindow.class
 fr/mycalendar/domain/vo/HeureDebut.class
 fr/mycalendar/domain/calendar/Calendrier.class

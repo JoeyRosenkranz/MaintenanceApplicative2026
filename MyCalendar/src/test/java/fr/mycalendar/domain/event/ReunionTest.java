@@ -53,6 +53,6 @@ class ReunionTest {
                 new Lieu("Salle A"),
                 new Participants(List.of(new Participant("Alice")))
         );
-        assertEquals("Status", reunion.description());
+        assertEquals("Status", reunion.description().valeur());
     }
 }

@@ -17,6 +17,12 @@ public final class Calendrier {
     }
 
     public void ajouter(Evenement evenement) {
+        evenements.stream()
+                .filter(e -> detecterConflits(e, evenement))
+                .findAny()
+                .ifPresent(e -> {
+                    throw new EvenementEnConflitException("L'événement entre en conflit avec un événement existant.");
+                });
         this.evenements.add(evenement);
     }
 

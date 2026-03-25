@@ -53,6 +53,6 @@ class EvenementPeriodiqueTest {
                 new DescriptionEvenement("Gym")
         );
         EvenementPeriodique ep = new EvenementPeriodique(rdv, FrequenceRepetition.QUOTIDIENNE);
-        assertEquals("Gym (QUOTIDIENNE)", ep.description());
+        assertEquals("Gym (QUOTIDIENNE)", ep.description().valeur());
     }
 }

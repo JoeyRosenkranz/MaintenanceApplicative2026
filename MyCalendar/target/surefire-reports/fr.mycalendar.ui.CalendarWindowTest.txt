@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: fr.mycalendar.ui.CalendarWindowTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.967 s -- in fr.mycalendar.ui.CalendarWindowTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.357 s -- in fr.mycalendar.ui.CalendarWindowTest
