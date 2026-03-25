@@ -1,0 +1,17 @@
+fr/mycalendar/domain/vo/ParticipantsTest.class
+fr/mycalendar/domain/event/RendezVousPersonnelTest.class
+fr/mycalendar/domain/vo/LieuTest.class
+fr/mycalendar/domain/vo/ParticipantTest.class
+fr/mycalendar/domain/vo/DateEvenementTest.class
+fr/mycalendar/domain/vo/FrequenceRepetitionTest.class
+fr/mycalendar/domain/calendar/CalendrierSerializerTest.class
+fr/mycalendar/domain/vo/DescriptionEvenementTest.class
+fr/mycalendar/domain/vo/PeriodeTest.class
+fr/mycalendar/domain/vo/HeureDebutTest.class
+fr/mycalendar/domain/calendar/CalendrierTest.class
+fr/mycalendar/ui/CalendarWindowTest.class
+fr/mycalendar/domain/vo/DureeEvenementTest.class
+fr/mycalendar/domain/event/ReunionTest.class
+fr/mycalendar/domain/event/EvenementPeriodiqueTest.class
+fr/mycalendar/domain/vo/EventIdTest.class
+fr/mycalendar/domain/vo/TitreEvenementTest.class

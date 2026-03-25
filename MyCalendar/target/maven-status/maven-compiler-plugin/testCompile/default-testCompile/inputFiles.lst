@@ -1,0 +1,17 @@
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/calendar/CalendrierSerializerTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/calendar/CalendrierTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/event/EvenementPeriodiqueTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/event/RendezVousPersonnelTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/event/ReunionTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/DateEvenementTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/DescriptionEvenementTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/DureeEvenementTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/EventIdTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/FrequenceRepetitionTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/HeureDebutTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/LieuTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/ParticipantTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/ParticipantsTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/PeriodeTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/domain/vo/TitreEvenementTest.java
+/Users/rosenkranzjoey/Documents/Mainte/MaintenanceApplicative2026/MyCalendar/src/test/java/fr/mycalendar/ui/CalendarWindowTest.java
